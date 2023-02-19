@@ -6,6 +6,7 @@ Class MyPAM, implementation of PAM algorithm
 * implementation of K-Means clustering algorithm in the WEKA system.
 
 > **Note**
+> 
 > the application shoud runing in weka gui chooser in `weka.gui.GUIChooser`
 > then loading the class MyPAM on weka clustrer
 
@@ -21,6 +22,24 @@ Class MyPAM, implementation of PAM algorithm
 ```
 or `weka.jar` file
 
+#### run
+```java
+ public static void main (String[] argv) throws Exception {
+        runClusterer(new MyPAM(), argv);
+
+        BufferedReader breader = null;
+        breader = new BufferedReader(new FileReader("path_to\resources\\data\\pam_big.arff"));
+        Instances Train = new Instances(breader);
+        //Train.setClassIndex(Train.numAttributes() - 1); // comment out this line
+        MyPAM pam = new MyPAM();
+        pam.setNumClusters(3);
+        pam.buildClusterer(Train);
+        System.out.println(pam);
+        System.out.println("- max iter: "+pam.getMaxIterations());
+        System.out.println("- revision: "+pam.getRevision());
+        breader.close();
+    }
+```
 ---
 
 ![java](https://badgen.net/badge/Java/17/red?icon=java) 
